@@ -182,8 +182,8 @@ void initialize(struct Atom atoms[])
       atoms[i].rz = latticez;
    }
 
-   /* generate momenta */
-   srand48(seed);  /* initialized the random number generator used in gaussian */
+   
+   srand48(seed); 
    scale = sqrt(T);
    K     = 0;
 
