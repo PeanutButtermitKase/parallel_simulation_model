@@ -1,4 +1,4 @@
-# parallel_simulation_model
+# simple parallel simulation model
 Shared memory is used to parallelized soft-spheres
 
 # Status

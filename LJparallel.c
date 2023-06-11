@@ -1,5 +1,6 @@
 /*
 Author @ Nydia R. Varela-Rosales
+Version v1 2023
 run as: gcc -fopenmp -o LJparallel LJparallel.c
 env OMP_NUM_THREADS=8 ./LJparallel | > out.pos
 */
@@ -20,7 +21,7 @@ double  dt;          //  time step
 double  halfDt;      // integration time step 
 double  runtime;     // simulation time
 long    seed;        // random seed 
-double  burninTime;  // start sampling
+double  relaxTime;  // start sampling
 double  K;           // KE
 double  U;           // PE
 double  H;           // Total energy
@@ -256,7 +257,7 @@ void run()
 {
    struct  Atom atoms[N];
    int     numSteps    = (int)(runtime/dt + 0.5);
-   int     burninSteps = (int)(burninTime/dt + 0.5);
+   int     burninSteps = (int)(relaxTime/dt + 0.5);
    int     count;          /* counts time steps */
    int     numPoints = 0;  /* counts measurements */
    double  sumH      = 0;  /* total energy accumulated over steps */
@@ -300,7 +301,7 @@ int main()
   dt = 0.01;
   runtime = 100;
   seed = 10;
-  burninTime = 10;
+  relaxTime = 10;
   
    L = 5;
    /* run the simulation */
