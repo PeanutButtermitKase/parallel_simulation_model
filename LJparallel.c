@@ -167,13 +167,12 @@ double gaussian()
 /* function to initialize the system */
 void initialize(struct Atom atoms[])
 {
-  // ofstream myfile;
-  // myfile.open ("lattice.pos");
    double  scale, a;
    int     i;
+   double distance = 1.1;
 
    /* generate positions */
-   a = L/(int)(cbrt(N)+0.99999999999); /* lattice distance */
+   a = L/(int)(cbrt(N)+distance); /* lattice distance */
 
    for ( i = 0; i < N; i = i + 1 )
    {
@@ -217,14 +216,15 @@ void integrateStep(struct Atom atoms[])
       atoms[i].pz = atoms[i].pz + 0.5*dt*atoms[i].fz;
    }
 
-   /* full free motion step */
+   // output to a positions file
+   char color = "0x00748A ";
    for ( i = 0; i < N; i = i + 1 )
    {
       atoms[i].rx = atoms[i].rx + dt*atoms[i].px;
       atoms[i].ry = atoms[i].ry + dt*atoms[i].py;
       atoms[i].rz = atoms[i].rz + dt*atoms[i].pz;
       
-      cout <<"sphere 1 0x00748A "<< atoms[i].rx << " "<<  atoms[i].ry <<" "<<atoms[i].rz << " \n";
+      cout <<"sphere 1 "<<  color << atoms[i].rx << " "<<  atoms[i].ry <<" "<<atoms[i].rz << " \n";
    }
    cout <<"eof\n";
 
